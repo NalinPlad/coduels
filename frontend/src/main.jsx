@@ -31,19 +31,19 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       {/* <h1>Lcoo: SaaS application</h1>
       <img src="https://loco.rs/images/logo.png" className="logo" alt="Loco logo" /> */}
           <CodeMirror
-      value="console.log('hello world!');"
-      height="200px"
-      basicSetup={{
-        foldGutter: false,
-        dropCursor: false,
-        allowMultipleSelections: false,
-        indentOnInput: false,
-      }}
-      extensions={[
-        langs.python(),
-      ]}
-      theme={githubDark}
-    />
+            value='print("Hello World!")'
+            height="200px"
+            basicSetup={{
+              foldGutter: false,
+              dropCursor: false,
+              allowMultipleSelections: false,
+              indentOnInput: false,
+            }}
+            extensions={[
+              langs.python(),
+            ]}
+            theme={githubDark}
+          />
     </div>
     <footer>
       <ul>
