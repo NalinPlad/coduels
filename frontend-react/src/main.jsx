@@ -1,10 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import { useState } from 'react';
 
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import { githubDark } from '@uiw/codemirror-themes-all';
+
+import { loadPyodide } from 'pyodide';
+let pyodide = loadPyodide();
+let [code, setCode] = useState('print("Hello World!")');
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -31,7 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       {/* <h1>Lcoo: SaaS application</h1>
       <img src="https://loco.rs/images/logo.png" className="logo" alt="Loco logo" /> */}
           <CodeMirror
-            value='print("Hello World!")'
+            value={code}
             height="200px"
             basicSetup={{
               foldGutter: false,
