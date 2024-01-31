@@ -2,6 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
+import CodeMirror from '@uiw/react-codemirror';
+import { langs } from '@uiw/codemirror-extensions-langs';
+import { githubDark } from '@uiw/codemirror-themes-all';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <header className="navbar fixed-top">
@@ -26,6 +30,20 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <div>
       {/* <h1>Lcoo: SaaS application</h1>
       <img src="https://loco.rs/images/logo.png" className="logo" alt="Loco logo" /> */}
+          <CodeMirror
+      value="console.log('hello world!');"
+      height="200px"
+      basicSetup={{
+        foldGutter: false,
+        dropCursor: false,
+        allowMultipleSelections: false,
+        indentOnInput: false,
+      }}
+      extensions={[
+        langs.python(),
+      ]}
+      theme={githubDark}
+    />
     </div>
     <footer>
       <ul>
