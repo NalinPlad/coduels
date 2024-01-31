@@ -65,6 +65,11 @@ server:
         uri: "/"
         path: "frontend/dist"
       fallback: "frontend/dist/index.html"
+      # folder:
+      #   uri: "/"
+      #   path: "frontend"
+      # fallback: "frontend/index.html"
+
 
 # Worker Configuration
 workers:

@@ -23,16 +23,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </ul> */}
       </div>
     </header>
-    <div className="logo">
-      <h1>Lcoo: SaaS application</h1>
-      <img src="https://loco.rs/images/logo.png" className="logo" alt="Loco logo" />
+    <div>
+      {/* <h1>Lcoo: SaaS application</h1>
+      <img src="https://loco.rs/images/logo.png" className="logo" alt="Loco logo" /> */}
     </div>
     <footer>
       <ul>
-        <li><a href="https://loco.rs?ref=starter" target="_blank">Our Documentation</a></li>
+        {/* <li><a href="https://loco.rs?ref=starter" target="_blank">Our Documentation</a></li>
         <li><a href="https://github.com/loco-rs/loco?ref=starter" target="_blank">GitHub</a></li>
         <li><a href="https://github.com/loco-rs/loco/issues?ref=starter" target="_blank">Found a bug?</a></li>
-        <li><a href="https://github.com/loco-rs/loco/discussions?ref=starter" target="_blank">Need help?</a></li>
+        <li><a href="https://github.com/loco-rs/loco/discussions?ref=starter" target="_blank">Need help?</a></li> */}
       </ul>
     </footer>
 
