@@ -13,4 +13,7 @@ export default defineConfig({
       },
     },
   },
+  optimizeDeps: {
+    exclude: ["codemirror", "@codemirror/language-python", "@codemirror/theme-one-dark" /* ... */],
+  },
 })
