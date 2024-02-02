@@ -8,7 +8,10 @@
 
     async function initPyodide() {
         let pyodide = await loadPyodide({
-            stdout: (msg) => console_output.push(msg),
+            stdout: (msg) => {
+                console_output.push(msg);
+                console_output = console_output;
+            },
         });
 
         console_output.push("Loaded Python wasm module");
@@ -37,8 +40,8 @@
 
 </script>
 
-
-<CodeMirror 
+<div>
+    <CodeMirror 
     lang={python()}
     theme={oneDark}
     extensions={[python()]}
@@ -51,13 +54,14 @@
     }}
     bind:value
     placeholder="Write your code here"
-/>
-<div>
-    {#each console_output as message}
+    />
+    <div>
+        {#each console_output as message}
         <p>{message}</p>
-    {/each}
+        {/each}
+    </div>
 </div>
-
+    
 
 <button on:click={run(value)}>
     Run
