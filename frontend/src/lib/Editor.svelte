@@ -4,6 +4,15 @@
     import { oneDark } from "@codemirror/theme-one-dark";
 
     let value="";
+
+    async function run(code) {
+        let pyodide = await loadPyodide();
+        console.log(pyodide.runPython(code));
+    }
+
+
+
+
 </script>
 
 <CodeMirror 
@@ -21,6 +30,6 @@
     placeholder="Write your code here"
 />
 
-<button>
+<button on:click={run(value)}>
     Run
 </button>
