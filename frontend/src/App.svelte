@@ -8,12 +8,14 @@
   import CodeMirror from "svelte-codemirror-editor";
   import { python } from "@codemirror/lang-python";
 
+  import "./app.css";
+
 
   let value = "";
 </script>
 
 
-<main>
+<main class="">
   <!-- <h1>Coduels</h1> -->
   
   <div class="card">
