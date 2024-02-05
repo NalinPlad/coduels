@@ -12,13 +12,16 @@
 
   import "./app.css";
 
-  const socket = io("/api");
+  const socket = io("ws://localhost:3000");
 
   socket.on("connect", () => {
     console.log("Connected to server");
   });
 
-  socket.emit("join");
+  // socket.emit("join");
+  function startRun() {
+    socket.emit("")
+  }
 
   console.log(socket)
 
@@ -35,7 +38,7 @@
   </div>
 
   <div class="bg-neutral-800 p-3 mb-3 rounded-md">
-    <h1>h</h1>
+    <h1></h1>
   </div>
   <Editor />
 
