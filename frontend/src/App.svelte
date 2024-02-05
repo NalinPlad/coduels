@@ -8,9 +8,19 @@
   import CodeMirror from "svelte-codemirror-editor";
   import { python } from "@codemirror/lang-python";
 
+  import io from "socket.io-client";
+
   import "./app.css";
 
-  // function 
+  const socket = io("/api");
+
+  socket.on("connect", () => {
+    console.log("Connected to server");
+  });
+
+  socket.emit("join");
+
+  console.log(socket)
 
 
   let value = "";

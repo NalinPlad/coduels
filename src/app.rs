@@ -45,10 +45,11 @@ impl Hooks for App {
         create_app::<Self, Migrator>(mode, environment).await
     }
 
-    fn routes(_ctx: &AppContext) -> AppRoutes {
+    fn routes(ctx: &AppContext) -> AppRoutes {
         AppRoutes::with_default_routes()
+        .prefix("/api")
+            .add_app_channels(Self::register_channels(ctx))
             .add_route(controllers::problems::routes())
-            .prefix("/api")
             .add_route(controllers::notes::routes())
             .add_route(controllers::auth::routes())
             .add_route(controllers::user::routes())

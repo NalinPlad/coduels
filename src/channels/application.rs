@@ -1,6 +1,6 @@
 use loco_rs::socketioxide::{
     extract::{AckSender, Bin, Data, SocketRef},
-    SocketIo,
+    // SocketIo,
 };
 
 use serde_json::Value;

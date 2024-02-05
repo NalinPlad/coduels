@@ -28,6 +28,7 @@
     "@codemirror/view": "^6.23.1",
     "@lezer/common": "^1.2.1",
     "codemirror": "^6.0.1",
+    "socket.io-client": "^4.7.4",
     "svelte-codemirror-editor": "1.1.0"
   }
 }
