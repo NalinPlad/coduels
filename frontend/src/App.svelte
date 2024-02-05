@@ -10,16 +10,23 @@
 
   import "./app.css";
 
+  // function 
+
 
   let value = "";
 </script>
 
 
-<main class="">
+<main class="flex flex-col justify-start">
   <!-- <h1>Coduels</h1> -->
-  
-  <div class="card">
-    <Editor />
-    <!-- <CodeMirror bind:value lang={python()} /> -->
+
+  <div class="bg-neutral-800 p-3 mb-3 rounded-md">
+    <button type="button">Join Room</button>
   </div>
+
+  <div class="bg-neutral-800 p-3 mb-3 rounded-md">
+    <h1>h</h1>
+  </div>
+  <Editor />
+
 </main>

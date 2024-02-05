@@ -4,7 +4,7 @@ use async_trait::async_trait;
 use loco_rs::{
     app::{AppContext, Hooks},
     boot::{create_app, BootResult, StartMode},
-    controller::AppRoutes,
+    controller::{AppRoutes,channels::AppChannels},
     db::{self, truncate_table},
     environment::Environment,
     task::Tasks,
@@ -16,10 +16,13 @@ use sea_orm::DatabaseConnection;
 
 use crate::{
     controllers,
+    channels,
     models::_entities::{notes, users},
     tasks,
     workers::downloader::DownloadWorker,
 };
+
+
 
 pub struct App;
 #[async_trait]
@@ -44,6 +47,7 @@ impl Hooks for App {
 
     fn routes(_ctx: &AppContext) -> AppRoutes {
         AppRoutes::with_default_routes()
+            .add_route(controllers::problems::routes())
             .prefix("/api")
             .add_route(controllers::notes::routes())
             .add_route(controllers::auth::routes())
@@ -68,5 +72,12 @@ impl Hooks for App {
         db::seed::<users::ActiveModel>(db, &base.join("users.yaml").display().to_string()).await?;
         db::seed::<notes::ActiveModel>(db, &base.join("notes.yaml").display().to_string()).await?;
         Ok(())
+    }
+
+    fn register_channels(_ctx: &AppContext) -> AppChannels {
+        let channels = AppChannels::default();
+        channels.register.ns("/", channels::application::on_connect);
+        channels
+
     }
 }

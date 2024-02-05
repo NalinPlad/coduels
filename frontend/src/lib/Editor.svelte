@@ -52,11 +52,6 @@
         console.log(console_output)
     }
 
-
-
-
-
-
 </script>
 
 <div class="flex flex-row justify-evenly h-screen max-h-[40vh] gap-3 bg-neutral-800 rounded-md p-3 mb-2">
@@ -75,7 +70,7 @@
         bind:value
         placeholder="Write your code here"
     />
-    <div class="w-1/4">
+    <div class="w-1/4 flex flex-col gap-2">
         {#each console_output as message}
             {#if message.type === OutputType.STDOUT}
                 <p class="border-b-2 bg-neutral-700 p-1 text-sm">{message.data}</p>
@@ -91,6 +86,6 @@
 </div>
     
 
-<button on:click={run(value)}>
+<button on:click={run(value)} class="w-fit">
     Run
 </button>

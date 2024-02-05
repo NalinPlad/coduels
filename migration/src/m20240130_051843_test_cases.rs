@@ -44,8 +44,7 @@ enum TestCases {
     ProblemId,
     Hidden,
     Inputs,
-    Answer,
-    
+    Answer, 
 }
 
 

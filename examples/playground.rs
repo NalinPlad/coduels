@@ -1,7 +1,8 @@
 use eyre::Context;
 #[allow(unused_imports)]
 use loco_rs::{cli::playground, prelude::*};
-use coduels::app::App;
+use coduels::{app::App, models::_entities::problems};
+use coduels::models::_entities::problems::Entity;
 
 #[tokio::main]
 async fn main() -> eyre::Result<()> {
@@ -15,8 +16,10 @@ async fn main() -> eyre::Result<()> {
     // active_model.insert(&ctx.db).await.unwrap();
 
     // let res = articles::Entity::find().all(&ctx.db).await.unwrap();
-    // println!("{:?}", res);
-    println!("welcome to playground. edit me at `examples/playground.rs`");
+    
+    let res = problems::Entity::find().all(&_ctx.db).await?;
+    println!("{:?}", res);
+    // println!("welcome to playground. edit me at `examples/playground.rs`");
 
     Ok(())
 }
