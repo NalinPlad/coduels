@@ -18,15 +18,15 @@
     console.log("Connected to server");
   });
 
-  socket.on("message", (data) => {
+  socket.on("message-back", (data) => {
     console.log("New message");
     console.log(data);
   });
 
   // socket.emit("join");
   function startRun() {
-    socket.emit("start")
     console.log("start")
+    socket.emit("start", "Hello")
   }
 
   console.log(socket)
