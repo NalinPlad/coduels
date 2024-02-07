@@ -12,15 +12,21 @@
 
   import "./app.css";
 
-  const socket = io("ws://localhost:3000");
+  let socket = io("ws://localhost:3000");
 
   socket.on("connect", () => {
     console.log("Connected to server");
   });
 
+  socket.on("message", (data) => {
+    console.log("New message");
+    console.log(data);
+  });
+
   // socket.emit("join");
   function startRun() {
-    socket.emit("")
+    socket.emit("start")
+    console.log("start")
   }
 
   console.log(socket)
@@ -34,7 +40,7 @@
   <!-- <h1>Coduels</h1> -->
 
   <div class="bg-neutral-800 p-3 mb-3 rounded-md">
-    <button type="button">Join Room</button>
+    <button type="button" on:click={startRun}>Join Room</button>
   </div>
 
   <div class="bg-neutral-800 p-3 mb-3 rounded-md">
