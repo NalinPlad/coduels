@@ -5,6 +5,7 @@ use loco_rs::socketioxide::{
 
 use serde_json::Value;
 use tracing::info;
+use uuid::Uuid;
 pub fn on_connect(socket: SocketRef, Data(data): Data<Value>) {
     info!("Socket.IO connected: {:?} {:?}", socket.ns(), socket.id);
 
@@ -20,10 +21,15 @@ pub fn on_connect(socket: SocketRef, Data(data): Data<Value>) {
     );
 
     socket.on(
-        "start",
+        "room",
         |socket: SocketRef, Data::<Value>(data), Bin(bin)| {
             info!("Received event: {:?} {:?}", data, bin);
-            socket.bin(bin).emit("message-back", data).ok();
+
+            // Create a new room
+            if data == "create" {
+                
+                socket.bin(bin).emit("message-back", Uuid::new_v4()).ok();
+            }
         },
     );
 

@@ -1,0 +1,4 @@
+Dont need to persist:
+    auth(JWT sent to short lived user)
+    code state
+

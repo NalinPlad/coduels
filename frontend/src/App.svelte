@@ -29,9 +29,17 @@
     socket.emit("start", "Hello")
   }
 
+  function joinRoom() {
+    console.log("Joining room")
+    socket.emit("join", "")
+  }
+
+  function createRoom() {
+    console.log("Creating room")
+    socket.emit("room", "create")
+  }
+
   console.log(socket)
-
-
   let value = "";
 </script>
 
@@ -40,7 +48,8 @@
   <!-- <h1>Coduels</h1> -->
 
   <div class="bg-neutral-800 p-3 mb-3 rounded-md">
-    <button type="button" on:click={startRun}>Join Room</button>
+    <button type="button" on:click={joinRoom}>Join Room</button>
+    <button type="button" on:click={createRoom}>Create Room</button>
   </div>
 
   <div class="bg-neutral-800 p-3 mb-3 rounded-md">
