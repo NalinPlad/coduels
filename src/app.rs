@@ -1,4 +1,4 @@
-use std::path::Path;
+use std::{path::Path, sync::mpsc::channel};
 
 use async_trait::async_trait;
 use loco_rs::{
@@ -50,7 +50,7 @@ impl Hooks for App {
         .prefix("/api")
             .add_app_channels(Self::register_channels(ctx))
             .add_route(controllers::problems::routes())
-            .add_route(controllers::notes::routes())
+            // .add_route(controllers::notes::routes())
             .add_route(controllers::auth::routes())
             .add_route(controllers::user::routes())
     }
@@ -65,17 +65,19 @@ impl Hooks for App {
 
     async fn truncate(db: &DatabaseConnection) -> Result<()> {
         truncate_table(db, users::Entity).await?;
-        truncate_table(db, notes::Entity).await?;
+        // truncate_table(db, notes::Entity).await?;
         Ok(())
     }
 
     async fn seed(db: &DatabaseConnection, base: &Path) -> Result<()> {
         db::seed::<users::ActiveModel>(db, &base.join("users.yaml").display().to_string()).await?;
-        db::seed::<notes::ActiveModel>(db, &base.join("notes.yaml").display().to_string()).await?;
+        // db::seed::<notes::ActiveModel>(db, &base.join("notes.yaml").display().to_string()).await?;
         Ok(())
     }
 
     fn register_channels(_ctx: &AppContext) -> AppChannels {
+        let sessions = channels::state::SessionStore::default();
+
         let channels = AppChannels::default();
         channels.register.ns("/", channels::application::on_connect);
         channels

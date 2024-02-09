@@ -3,14 +3,17 @@ use loco_rs::socketioxide::{
     // SocketIo,
 };
 
-use serde_json::Value;
+use serde_json::{Value};
 use tracing::info;
 use uuid::Uuid;
+
+// use super::state::SessionStore;
+
 pub fn on_connect(socket: SocketRef, Data(data): Data<Value>) {
     info!("Socket.IO connected: {:?} {:?}", socket.ns(), socket.id);
 
     // info!("Sending auth data? heres the contents: {}", &data);
-    socket.emit("auth", data).ok();
+    // socket.emit("auth", data).ok();
 
     socket.on(
         "message",
@@ -25,9 +28,12 @@ pub fn on_connect(socket: SocketRef, Data(data): Data<Value>) {
         |socket: SocketRef, Data::<Value>(data), Bin(bin)| {
             info!("Received event: {:?} {:?}", data, bin);
 
+            // let action = data["action"].;
+            dbg!(&data);
+
             // Create a new room
-            if data == "create" {
-                
+            if data == Value::String(String::from("create")) {
+                info!("Creating a new room");
                 socket.bin(bin).emit("message-back", Uuid::new_v4()).ok();
             }
         },
