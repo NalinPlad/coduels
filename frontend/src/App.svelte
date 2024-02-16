@@ -13,6 +13,7 @@
   import "./app.css";
 
   let socket = io("ws://localhost:3000");
+  let joinRoomNumber = "abc";
 
   socket.on("connect", () => {
     console.log("Connected to server");
@@ -31,12 +32,12 @@
 
   function joinRoom() {
     console.log("Joining room")
-    socket.emit("join", "")
+    socket.emit("join", joinRoomNumber)
   }
 
   function createRoom() {
     console.log("Creating room")
-    socket.emit("room", "create")
+    socket.emit("create", "create")
   }
 
   console.log(socket)
@@ -48,6 +49,7 @@
   <!-- <h1>Coduels</h1> -->
 
   <div class="bg-neutral-800 p-3 mb-3 rounded-md">
+    <input type="text" bind:value={joinRoomNumber} />
     <button type="button" on:click={joinRoom}>Join Room</button>
     <button type="button" on:click={createRoom}>Create Room</button>
   </div>

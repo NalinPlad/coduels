@@ -1,9 +1,10 @@
 use loco_rs::socketioxide::{
-    extract::{AckSender, Bin, Data, SocketRef},
+    extract::{AckSender, Bin, Data, SocketRef, State},
     // SocketIo,
 };
 
 use serde_json::{Value};
+use super::state;
 use tracing::info;
 use uuid::Uuid;
 
@@ -24,17 +25,40 @@ pub fn on_connect(socket: SocketRef, Data(data): Data<Value>) {
     );
 
     socket.on(
-        "room",
-        |socket: SocketRef, Data::<Value>(data), Bin(bin)| {
-            info!("Received event: {:?} {:?}", data, bin);
+        "create",
+        |socket: SocketRef, Data::<Value>(data)| {
+            info!("Received event: {:?}", data);
 
             // let action = data["action"].;
             dbg!(&data);
 
             // Create a new room
-            if data == Value::String(String::from("create")) {
-                info!("Creating a new room");
-                socket.bin(bin).emit("message-back", Uuid::new_v4()).ok();
+            socket.emit("message-back", Uuid::new_v4()).ok();
+            
+        },
+    );
+
+    // socket.on(
+    //     "join",
+    //     |socket: SocketRef, Data::<String>(room)| async move{
+    //         info!("Received event: {:?}", room);
+
+    //         // let action = data["action"].;
+    //         dbg!(&data);
+
+    //         // Create a new room
+    //         socket.emit("message-back", Uuid::new_v4()).ok();
+            
+    //     },
+    // );
+
+    socket.on(
+        "join", 
+        |socket: SocketRef, Data::<String>(room), store: State<state::SessionStore>| async move {
+            info!("Received event: {:?}", room);
+            // check if room exists
+            if store.sessions.read().await.contains_key(&room) {
+                socket.emit("message-back", "Yes, that room exists. Cool").ok();
             }
         },
     );

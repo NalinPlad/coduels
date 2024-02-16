@@ -78,7 +78,7 @@ impl Hooks for App {
     fn register_channels(_ctx: &AppContext) -> AppChannels {
         let sessions = channels::state::SessionStore::default();
 
-        let channels = AppChannels::default();
+        let channels: AppChannels = AppChannels::builder().with_state(sessions).into();
         channels.register.ns("/", channels::application::on_connect);
         channels
 
